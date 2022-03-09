@@ -1,13 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
+import "./interfaces/IQuestNFT.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract QuestNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
+contract QuestNFT is IQuestNFT, ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     mapping(uint256 => address) private _channelAddrs;
 
     using Counters for Counters.Counter;
@@ -41,7 +42,7 @@ contract QuestNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     function tokenURI(uint256 tokenId)
         public
         view
-        override(ERC721, ERC721URIStorage)
+        override(IQuestNFT, ERC721, ERC721URIStorage)
         returns (string memory)
     {
         return super.tokenURI(tokenId);
@@ -50,7 +51,7 @@ contract QuestNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     function supportsInterface(bytes4 interfaceId)
         public
         view
-        override(ERC721, ERC721Enumerable)
+        override(IQuestNFT, ERC721, ERC721Enumerable)
         returns (bool)
     {
         return super.supportsInterface(interfaceId);

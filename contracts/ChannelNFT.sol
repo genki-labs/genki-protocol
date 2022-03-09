@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
+import "./interfaces/IChannelNFT.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract ChannelNFT is ERC721, ERC721Enumerable, Ownable {
+contract ChannelNFT is IChannelNFT, ERC721, ERC721Enumerable, Ownable {
     uint256 private _questId;
     mapping(uint256 => address) private _achievementAddrs;
     mapping(address => bool) private _confirmedUserAddrs;
@@ -39,7 +40,7 @@ contract ChannelNFT is ERC721, ERC721Enumerable, Ownable {
     function supportsInterface(bytes4 interfaceId)
         public
         view
-        override(ERC721, ERC721Enumerable)
+        override(IChannelNFT, ERC721, ERC721Enumerable)
         returns (bool)
     {
         return super.supportsInterface(interfaceId);

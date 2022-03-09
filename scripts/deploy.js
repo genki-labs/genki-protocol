@@ -1,3 +1,5 @@
+const { ethers } = require("hardhat");
+
 async function main() {
   // We get the contract to deploy
   const GenkiHub = await ethers.getContractFactory("GenkiHub");

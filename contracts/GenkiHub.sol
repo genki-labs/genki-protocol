@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
+import "./interfaces/IGenkiHub.sol";
 import "./QuestNFT.sol";
 import "./ChannelNFT.sol";
 import "./AchievementNFT.sol";
@@ -13,7 +14,7 @@ import "./AchievementNFT.sol";
  * This is the main entry point of the Genki Protocol. It contains quest posting,
  * channel registering, and reward claming functionality.
  */
-contract GenkiHub {
+contract GenkiHub is IGenkiHub {
     address private immutable OWNER_ADDR;
     address private immutable QUEST_NFT_ADDR;
 
@@ -40,7 +41,7 @@ contract GenkiHub {
         _questRewards[questId] = msg.value;
     }
 
-    function registerChannel(uint256 questId) public {
+    function registerChannel(uint256 questId) external {
         registerChannel(questId, msg.sender);
     }
 
@@ -109,7 +110,7 @@ contract GenkiHub {
         achievementNFT.safeMint(msg.sender);
     }
 
-    function getQuestAddr() public view returns (address) {
+    function getQuestAddr() external view returns (address) {
         return QUEST_NFT_ADDR;
     }
 }

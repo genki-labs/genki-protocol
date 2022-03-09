@@ -1,6 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 
-task("demo", "Deploys the Genki Protocol", async ({ }, hre) => {
+task("demo", "Deploys the Genki Protocol", async ({}, hre) => {
   const ethers = await hre.ethers;
   const [owner, addr1, addr2, addr3, addr4] = await ethers.getSigners();
 
